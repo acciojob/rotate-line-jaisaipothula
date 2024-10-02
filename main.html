@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rotating Line</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #line {
+            position: absolute;
+            width: 200px;
+            height: 2px;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform-origin: 50% 50%; /* Set the origin for rotation */
+        }
+    </style>
 </head>
 <body>
     <div id="line"></div>
-    <script src="script.js"></script>
+    <script>
+        const line = document.getElementById('line');
+        let angle = 0;
+
+        function rotateLine() {
+            angle += 2; // Increment the angle
+            line.style.transform = `rotate(${angle}deg)`;
+            requestAnimationFrame(rotateLine); // Smooth animation
+        }
+
+        setInterval(rotateLine, 20); // Call the rotate function every 20 milliseconds
+    </script>
 </body>
 </html>
